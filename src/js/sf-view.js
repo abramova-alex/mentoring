@@ -12,13 +12,14 @@ window.sashaFramework.View = (function (exports) {
     View.prototype.loadTemplate = function(newData) {
         var request = new exports.http({
             method: 'GET',
-            url: this.template,
-            async: true
+            url: this.template
         });
 
         var self = this;
 
-        request.then(onSucces, onError);
+        request.get().then(onSucces, function(error) {
+            console.error("Failed!", error);
+        });
 
         function onSucces(data){
             self.loadView(data, newData);

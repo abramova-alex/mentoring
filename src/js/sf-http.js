@@ -3,34 +3,30 @@ window.sashaFramework.Http = (function (exports) {
         this.request = new XMLHttpRequest();
         this.method = conf.method;
         this.url = conf.url;
-        this.async = conf.async;
     }
 
-    Http.prototype.then = function (onSuccess, onError) {
-        this.request.open(this.method, this.url + '', this.async);
-        this.request.send();
+    Http.prototype.get = function () {
         var self = this;
 
-        if (!this.async) {
-            if (this.request.status !== 404) {
-                onSuccess(this.request.response);
-            } else {
-                onError(this.request.response);
-            }
-        } else {
-            this.request.onreadystatechange = function () {
-                if (self.request.readyState !== 4) {
-                    return;
-                }
+        return new Promise(function(resolve, reject) {
+            self.request.open(self.method, self.url);
 
-                if (self.request.status !== 400) {
-                    onSuccess(self.request.responseText);
+            self.request.onload = function() {
+                if (self.request.status == 200) {
+                    resolve(self.request.response);
                 } else {
-                    onError(self.request.response);
+                    reject(Error(self.request.statusText));
                 }
             };
-        }
+
+            self.request.onerror = function() {
+                reject(Error("Network Error"));
+            };
+
+            self.request.send();
+        });
     };
+
 
     exports.http = Http;
 })( window.sashaFramework || {});
