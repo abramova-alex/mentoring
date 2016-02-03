@@ -9,7 +9,7 @@ window.sashaFramework = window.sashaFramework || {};
 //= sf-controller.js
 
 
-window.sashaFramework = (function (w, d, exports) {
+window.sashaFramework = (function (w, exports) {
     var sfMvc = function () {};
 
     sfMvc.prototype.AddRoute = function (controller, route) {
@@ -28,4 +28,4 @@ window.sashaFramework = (function (w, d, exports) {
         exports.Router.startRoute();
     };
 
-})(window, document, window.sashaFramework);
+})(window, window.sashaFramework);

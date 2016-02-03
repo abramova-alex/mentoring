@@ -1,11 +1,11 @@
 window.sashaFramework.Model = (function (exports) {
-    function model(data) {
+    function Model(data) {
         this.data = data;
     }
 
-    model.prototype.update = function(data) {
+    Model.prototype.update = function(data) {
         this.data = data;
     };
 
-    exports.model = model;
+    exports.model = Model;
 })( window.sashaFramework || {});

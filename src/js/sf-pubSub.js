@@ -1,10 +1,10 @@
 window.sashaFramework.PubSub = (function (exports) {
-    function pubSub() {
+    function PubSub() {
         this.topics = {};
         this.lastUid = -1;
     }
 
-    pubSub.prototype.publish = function( topic , data){
+    PubSub.prototype.publish = function( topic , data){
         var self = this;
 
         var notify = function() {
@@ -20,7 +20,7 @@ window.sashaFramework.PubSub = (function (exports) {
         return true;
     };
 
-    pubSub.prototype.subscribe = function( topic, func ){
+    PubSub.prototype.subscribe = function( topic, func ){
         var token = (++this.lastUid).toString();
 
         this.topics[topic].push( { token : token, func : func } );
@@ -28,5 +28,5 @@ window.sashaFramework.PubSub = (function (exports) {
         return token;
     };
 
-    exports.pubSub = pubSub;
+    exports.pubSub = PubSub;
 })( window.sashaFramework || {});

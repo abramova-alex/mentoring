@@ -1,15 +1,15 @@
 window.sashaFramework.View = (function (exports) {
-    function view(template) {
+    function View(template) {
         this.template = template;
         this.rendered = false;
         this.placeHolder = document.querySelector('[sf-view]');
     }
 
-    view.prototype.render = function (newData){
+    View.prototype.render = function (newData){
         this.loadTemplate(newData);
     };
 
-    view.prototype.loadTemplate = function(newData) {
+    View.prototype.loadTemplate = function(newData) {
         var request = new exports.http({
             method: 'GET',
             url: this.template,
@@ -29,7 +29,7 @@ window.sashaFramework.View = (function (exports) {
         }
     };
 
-    view.prototype.loadView = function (viewHtml, newData) {
+    View.prototype.loadView = function (viewHtml, newData) {
         var data = newData,
             renderViewDelegate = this.renderView.bind(null, viewHtml, data),
             view = new viewContainer(renderViewDelegate);
@@ -42,13 +42,13 @@ window.sashaFramework.View = (function (exports) {
         }
     };
 
-    view.prototype.renderView = function(viewHtml, newData) {
+    View.prototype.renderView = function(viewHtml, newData) {
         viewHtml = this.viewModelBinding(viewHtml, newData);
         this.placeHolder.innerHTML = viewHtml;
         this.rendered = true;
     };
 
-    view.prototype.viewModelBinding = function (viewHtml, newData) {
+    View.prototype.viewModelBinding = function (viewHtml, newData) {
         var modelProps = Object.getOwnPropertyNames(newData);
 
         modelProps.forEach(function (element) {
@@ -63,5 +63,5 @@ window.sashaFramework.View = (function (exports) {
         this.isAsync = false;
     };
 
-    exports.view = view;
+    exports.view = View;
 })( window.sashaFramework || {});

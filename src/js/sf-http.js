@@ -1,12 +1,12 @@
 window.sashaFramework.Http = (function (exports) {
-    function http(conf) {
+    function Http(conf) {
         this.request = new XMLHttpRequest();
         this.method = conf.method;
         this.url = conf.url;
         this.async = conf.async;
     }
 
-    http.prototype.then = function (onSuccess, onError) {
+    Http.prototype.then = function (onSuccess, onError) {
         this.request.open(this.method, this.url + '', this.async);
         this.request.send();
         var self = this;
@@ -32,5 +32,5 @@ window.sashaFramework.Http = (function (exports) {
         }
     };
 
-    exports.http = http;
+    exports.http = Http;
 })( window.sashaFramework || {});

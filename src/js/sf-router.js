@@ -12,10 +12,11 @@ window.sashaFramework.Router = (function (w, d, exports) {
     }
 
     function add(module, route) {
-        if(typeof route === 'function') {
+        if (typeof route === 'function') {
             module = route;
             route = '';
         }
+
         routes[route] = { route: route, module: module};
     }
 
