@@ -2,9 +2,13 @@ var homeModel = sfMvc.createModel({Message :'Hello World'}),
     contModel = sfMvc.createModel({FirstName: "Sasha", LastName: "Abramova", Address: 'Kiev' }),
     loginModel = sfMvc.createModel({UserName : "Sasha", Password : "qwerty"});
 
-var homeContr = sfMvc.createCntr(function (view, model) {}, 'Views/home.html', homeModel),
-    contContr = sfMvc.createCntr(function (view, model) {}, 'Views/contact.html', contModel),
-    loginContr = sfMvc.createCntr(function (view, model) {}, 'Views/login.html', loginModel);
+var homeView = sfMvc.createView('Views/home.html'),
+    contView = sfMvc.createView('Views/contact.html'),
+    loginView = sfMvc.createView('Views/login.html');
+
+var homeContr = sfMvc.createCntr(function (view, model) {}, homeView, homeModel),
+    contContr = sfMvc.createCntr(function (view, model) {}, contView, contModel),
+    loginContr = sfMvc.createCntr(function (view, model) {} , loginView, loginModel);
 
 
 sfMvc.AddRoute(homeContr, 'home');

@@ -12,7 +12,7 @@ window.sashaFramework.Router = (function (w, d, exports) {
     }
 
     function add(controller, route) {
-        if(typeof route == 'function') {
+        if(typeof route === 'function') {
             controller = route;
             route = '';
         }
@@ -28,12 +28,12 @@ window.sashaFramework.Router = (function (w, d, exports) {
     function startRoute() {
         var routeObj = getRouteObj();
 
-        exports.View.render(routeObj);
+        routeObj.controller.view.render(routeObj);
     }
 
     return {
         add: add,
         startRoute: startRoute
-    }
+    };
 
 })(window, document, window.sashaFramework);

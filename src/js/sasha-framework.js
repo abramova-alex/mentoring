@@ -23,6 +23,10 @@ window.sashaFramework = (function (w, d, exports) {
         return new exports.model(data);
     };
 
+    sfMvc.prototype.createView = function (template) {
+        return new exports.view(template);
+    };
+
 
     w['sfMvc'] = new sfMvc();//attach the mvc object to the wi
 

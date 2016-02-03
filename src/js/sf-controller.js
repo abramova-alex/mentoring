@@ -1,9 +1,9 @@
 window.sashaFramework = window.sashaFramework || {};
 
 window.sashaFramework.Controller = (function (exports) {
-    function cntr(fn, template, model) {
+    function cntr(fn, view, model) {
         this.fn = fn;
-        this.template = template;
+        this.view = view;
         this.model = model;
     }
 
