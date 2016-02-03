@@ -1,4 +1,4 @@
-window.sashaFramework.Controller = (function (exports) {
+window.sashaFramework.Http = (function (exports) {
     function http(conf) {
         this.request = new XMLHttpRequest();
         this.method = conf.method;
@@ -6,8 +6,7 @@ window.sashaFramework.Controller = (function (exports) {
         this.async = conf.async;
     }
 
-
-    http.prototype.send = function (onSuccess, onError) {
+    http.prototype.then = function (onSuccess, onError) {
         this.request.open(this.method, this.url + '', this.async);
         this.request.send();
         var self = this;
@@ -16,7 +15,7 @@ window.sashaFramework.Controller = (function (exports) {
             if (this.request.status !== 404) {
                 onSuccess(this.request.response);
             } else {
-                errorCallback(this.request.response);
+                onError(this.request.response);
             }
         } else {
             this.request.onreadystatechange = function () {
