@@ -20,20 +20,7 @@ window.sashaFramework = (function (w, d, exports) {
         return new exports.module(model, view, controller);
     };
 
-    sfMvc.prototype.createCntr = function (fn, model, view) {
-        return new exports.cntr(fn, model, view);
-    };
-
-    sfMvc.prototype.createModel = function (data) {
-        return new exports.model(data);
-    };
-
-    sfMvc.prototype.createView = function (template) {
-        return new exports.view(template);
-    };
-
-
-    w['sfMvc'] = new sfMvc();//attach the mvc object to the wi
+    w['sfMvc'] = new sfMvc();
 
     sfMvc.prototype.init  = function() {
         w.onhashchange = exports.Router.startRoute;

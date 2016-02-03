@@ -1,22 +1,30 @@
-var homeModel = sfMvc.createModel({Message :'Hello World'}),
-    contModel = sfMvc.createModel({FirstName: "Sasha", LastName: "Abramova", Address: 'Kiev' }),
-    loginModel = sfMvc.createModel({UserName : "Sasha", Password : "qwerty"});
+var homeModule = sfMvc.createModule();
 
-var homeView = sfMvc.createView('Views/home.html'),
-    contView = sfMvc.createView('Views/contact.html'),
-    loginView = sfMvc.createView('Views/login.html');
+homeModule
+    .modelCreate({Message :'Hello World'})
+    .viewCreate('Views/home.html')
+    .controllerCreate(function (view, model) { console.log("home page")});
 
-var homeContr = sfMvc.createCntr(function (view, model) {}, homeView, homeModel),
-    contContr = sfMvc.createCntr(function (view, model) {}, contView, contModel),
-    loginContr = sfMvc.createCntr(function (view, model) {} , loginView, loginModel);
+var contModule = sfMvc.createModule();
+
+contModule
+    .modelCreate({FirstName: "Sasha", LastName: "Abramova", Address: 'Kiev' })
+    .viewCreate('Views/contact.html')
+    .controllerCreate(function (view, model) {
+        console.log("Contact page");
+    });
+
+var loginModule = sfMvc.createModule();
+
+loginModule
+    .modelCreate({UserName : "Sasha", Password : "qwerty"})
+    .viewCreate('Views/login.html')
+    .controllerCreate(function (view, model) {
+        console.log("login page");
+    });
 
 
-var homemodule = sfMvc.createModule(homeModel, homeView, homeContr);
-var contmodule = sfMvc.createModule(contModel, contView, contContr);
-var loginmodule = sfMvc.createModule(loginModel, loginView, loginContr);
-
-
-sfMvc.AddRoute(homemodule, 'home');
-sfMvc.AddRoute(contmodule, 'contact');
-sfMvc.AddRoute(loginmodule, 'login');
+sfMvc.AddRoute(homeModule, 'home');
+sfMvc.AddRoute(contModule, 'contact');
+sfMvc.AddRoute(loginModule, 'login');
 sfMvc.init();

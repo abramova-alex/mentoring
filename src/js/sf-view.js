@@ -5,11 +5,11 @@ window.sashaFramework.View = (function (exports) {
         this.placeHolder = document.querySelector('[sf-view]');
     }
 
-    view.prototype.render = function (modelData){
-        this.loadTemplate(modelData);
+    view.prototype.render = function (newData){
+        this.loadTemplate(newData);
     };
 
-    view.prototype.loadTemplate = function(modelData) {
+    view.prototype.loadTemplate = function(newData) {
         var request = new exports.http({
             method: 'GET',
             url: this.template,
@@ -19,14 +19,14 @@ window.sashaFramework.View = (function (exports) {
         var self = this;
 
         request.then(function(data){
-            self.loadView(data, modelData);
+            self.loadView(data, newData);
         }, function(){
             console.log("error");
         });
     };
 
-    view.prototype.loadView = function (viewHtml, modelData) {
-        var data = modelData,
+    view.prototype.loadView = function (viewHtml, newData) {
+        var data = newData,
             renderViewDelegate = this.renderView.bind(null, viewHtml, data),
             view = new viewContainer(renderViewDelegate);
 
@@ -38,17 +38,17 @@ window.sashaFramework.View = (function (exports) {
         }
     };
 
-    view.prototype.renderView = function(viewHtml, model) {
-        viewHtml = this.viewModelBinding(viewHtml, model);
+    view.prototype.renderView = function(viewHtml, newData) {
+        viewHtml = this.viewModelBinding(viewHtml, newData);
         this.placeHolder.innerHTML = viewHtml;
         this.rendered = true;
     };
 
-    view.prototype.viewModelBinding = function (viewHtml, model) {
-        var modelProps = Object.getOwnPropertyNames(model);
+    view.prototype.viewModelBinding = function (viewHtml, newData) {
+        var modelProps = Object.getOwnPropertyNames(newData);
 
         modelProps.forEach(function (element) {
-            viewHtml = viewHtml.replace('{{' + element + '}}', model[element]);
+            viewHtml = viewHtml.replace('{{' + element + '}}', newData[element]);
         });
 
         return viewHtml;
