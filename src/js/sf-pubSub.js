@@ -1,4 +1,11 @@
 window.sashaFramework.PubSub = (function (exports) {
+    var pubSub;
+
+    function createPubSub() {
+        return new PubSub();
+    }
+
+
     function PubSub() {
         this.topics = {};
         this.lastUid = -1;
@@ -28,5 +35,10 @@ window.sashaFramework.PubSub = (function (exports) {
         return token;
     };
 
-    exports.pubSub = PubSub;
+    exports.pubSub = function () {
+        if (!pubSub) {
+            pubSub = createPubSub();
+        }
+        return pubSub;
+    }
 })( window.sashaFramework || {});
