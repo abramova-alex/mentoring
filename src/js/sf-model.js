@@ -7,5 +7,9 @@ window.sashaFramework.Model = (function (exports) {
         this.data = data;
     };
 
+    Model.prototype.getData = function() {
+        return this.data;
+    };
+
     exports.model = Model;
 })( window.sashaFramework || {});
