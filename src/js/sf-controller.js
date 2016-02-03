@@ -1,15 +1,12 @@
 window.sashaFramework = window.sashaFramework || {};
 
-window.sashaFramework.Controller = (function (w, d, undefined) {
-    function Cntr(fn, template, model) {
+window.sashaFramework.Controller = (function (exports) {
+    function cntr(fn, template, model) {
         this.fn = fn;
         this.template = template;
         this.model = model;
     }
 
+    exports.cntr = cntr;
 
-    return {
-        cntr: Cntr
-    }
-
-})(window, document);
+})(window.sashaFramework || {});

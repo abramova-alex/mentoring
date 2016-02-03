@@ -1,7 +1,6 @@
 window.sashaFramework.View = (function (w, d, exports) {
     var _rendered = false,
-        placeHolder = null,
-        template = '';
+        placeHolder = null;
 
     function loadPlaceHolder() {
         placeHolder = d.querySelector('[sf-view]');
@@ -12,39 +11,36 @@ window.sashaFramework.View = (function (w, d, exports) {
         loadTemplate(routeObject);
     }
 
-    function setTemplate(data) {
-        template = data;
-    }
-
     function loadTemplate(routeObject) {
-        var http;
+        var request = new exports.http({
+            method: 'GET',
+            url: routeObject.controller.template,
+            async: true
+        });
 
-        http = new XMLHttpRequest();
-
-        http.onreadystatechange = function () {
-            if (http.readyState == 4 && http.status == 200) {
-                loadView(routeObject.controller, placeHolder, http.responseText);
-            }
-        };
-        http.open('GET', routeObject.controller.template, true);
-        http.send();
+        request.then(function(data){
+            loadView(data, routeObject.controller);
+        }, function(){
+            console.log("error");
+        })
     }
 
-    function loadView(controller, viewElement, viewHtml) {
-        var renderViewDelegate = renderView.bind(null, viewElement, viewHtml, controller.model),
+    function loadView( viewHtml, controller) {
+        var data = controller.model.data,
+            renderViewDelegate = renderView.bind(null, viewHtml, data),
             view = new viewContainer(renderViewDelegate);
 
-        viewHtml = viewModelBinding(viewHtml, controller.model);
-        viewElement.innerHTML = viewHtml;
+        viewHtml = viewModelBinding(viewHtml, data);
+        placeHolder.innerHTML = viewHtml;
 
         if (!view.isAsync && !_rendered) {
-            renderView(viewElement, viewHtml, controller.model);
+            renderView(placeHolder, viewHtml, data);
         }
     }
 
-    function renderView(viewElement, viewHtml, model) {
+    function renderView(viewHtml, model) {
         viewHtml = viewModelBinding(viewHtml, model);
-        viewElement.innerHTML = viewHtml;
+        placeHolder.innerHTML = viewHtml;
         _rendered = true;
     }
 
