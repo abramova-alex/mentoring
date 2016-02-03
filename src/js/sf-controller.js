@@ -7,6 +7,10 @@ window.sashaFramework.Controller = (function (exports) {
         this.model = model;
     }
 
+    cntr.prototype.renderView = function() {
+        this.view.render(this.model.data);
+    };
+
     exports.cntr = cntr;
 
 })(window.sashaFramework || {});

@@ -28,7 +28,7 @@ window.sashaFramework.Router = (function (w, d, exports) {
     function startRoute() {
         var routeObj = getRouteObj();
 
-        routeObj.controller.view.render(routeObj);
+        routeObj.controller.renderView();
     }
 
     return {
