@@ -3,5 +3,9 @@ window.sashaFramework.Model = (function (exports) {
         this.data = data;
     }
 
+    model.prototype.update = function(data) {
+        this.data = data;
+    };
+
     exports.model = model;
 })( window.sashaFramework || {});
