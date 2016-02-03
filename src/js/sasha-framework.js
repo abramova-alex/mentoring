@@ -1,6 +1,7 @@
 window.sashaFramework = window.sashaFramework || {};
 
 //= sf-http.js
+//= sf-pubSub.js
 //= sf-module.js
 //= sf-model.js
 //= sf-view.js
