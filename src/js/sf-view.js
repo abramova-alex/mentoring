@@ -18,11 +18,15 @@ window.sashaFramework.View = (function (exports) {
 
         var self = this;
 
-        request.then(function(data){
+        request.then(onSucces, onError);
+
+        function onSucces(data){
             self.loadView(data, newData);
-        }, function(){
+        }
+
+        function onError(){
             console.log("error");
-        });
+        }
     };
 
     view.prototype.loadView = function (viewHtml, newData) {
