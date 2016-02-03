@@ -11,12 +11,12 @@ window.sashaFramework.Router = (function (w, d, exports) {
         return path.toString().replace(/\/$/, '').replace(/^\//, '');
     }
 
-    function add(controller, route) {
-        if(typeof route === 'function') {
-            controller = route;
-            route = '';
-        }
-        routes[route] = { route: route, controller: controller};
+    function add(model, route) {
+        //if(typeof route === 'function') {
+        //    model = route;
+        //    route = '';
+        //}
+        routes[route] = { route: route, model: model};
     }
 
     function getRouteObj() {
@@ -28,7 +28,7 @@ window.sashaFramework.Router = (function (w, d, exports) {
     function startRoute() {
         var routeObj = getRouteObj();
 
-        routeObj.controller.renderView();
+        routeObj.model.controller.renderView();
     }
 
     return {

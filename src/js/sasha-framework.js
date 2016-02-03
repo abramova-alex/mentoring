@@ -1,6 +1,7 @@
 window.sashaFramework = window.sashaFramework || {};
 
 //= sf-http.js
+//= sf-module.js
 //= sf-model.js
 //= sf-view.js
 //= sf-router.js
@@ -14,6 +15,10 @@ window.sashaFramework = (function (w, d, exports) {
         exports.Router.add(controller, route);
     };
 
+
+    sfMvc.prototype.createModule = function (model, view, controller) {
+        return new exports.module(model, view, controller);
+    };
 
     sfMvc.prototype.createCntr = function (fn, model, view) {
         return new exports.cntr(fn, model, view);

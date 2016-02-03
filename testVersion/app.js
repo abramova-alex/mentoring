@@ -11,7 +11,12 @@ var homeContr = sfMvc.createCntr(function (view, model) {}, homeView, homeModel)
     loginContr = sfMvc.createCntr(function (view, model) {} , loginView, loginModel);
 
 
-sfMvc.AddRoute(homeContr, 'home');
-sfMvc.AddRoute(contContr, 'contact');
-sfMvc.AddRoute(loginContr, 'login');
+var homemodule = sfMvc.createModule(homeModel, homeView, homeContr);
+var contmodule = sfMvc.createModule(contModel, contView, contContr);
+var loginmodule = sfMvc.createModule(loginModel, loginView, loginContr);
+
+
+sfMvc.AddRoute(homemodule, 'home');
+sfMvc.AddRoute(contmodule, 'contact');
+sfMvc.AddRoute(loginmodule, 'login');
 sfMvc.init();
