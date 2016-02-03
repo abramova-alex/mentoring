@@ -23,7 +23,7 @@ window.sashaFramework.Module = (function (exports) {
         return this;
     };
 
-    module.prototype.onPageChange = function(){
+    module.prototype.onPageLoad = function(){
         this.controller.fn();
         this.controller.renderView();
     };

@@ -12,10 +12,10 @@ window.sashaFramework.Router = (function (w, d, exports) {
     }
 
     function add(module, route) {
-        //if(typeof route === 'function') {
-        //    model = route;
-        //    route = '';
-        //}
+        if(typeof route === 'function') {
+            module = route;
+            route = '';
+        }
         routes[route] = { route: route, module: module};
     }
 
@@ -28,7 +28,7 @@ window.sashaFramework.Router = (function (w, d, exports) {
     function startRoute() {
         var routeObj = getRouteObj();
 
-        routeObj.module.onPageChange();
+        routeObj.module.onPageLoad();
     }
 
     return {
