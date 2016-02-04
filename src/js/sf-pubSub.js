@@ -4,10 +4,10 @@ window.sashaFramework.PubSub = (function (exports) {
         this.lastUid = -1;
     }
 
-    PubSub.prototype.publish = function( topic , data){
+    PubSub.prototype.publish = function (topic, data) {
         var self = this;
 
-        var notify = function() {
+        var notify = function () {
             var subscribers = self.topics[topic];
 
             for ( var i = 0, j = subscribers.length; i < j; i++ ){
@@ -15,12 +15,12 @@ window.sashaFramework.PubSub = (function (exports) {
             }
         };
 
-        setTimeout( notify , 0 );
+        setTimeout(notify , 0);
 
         return true;
     };
 
-    PubSub.prototype.subscribe = function( topic, func ){
+    PubSub.prototype.subscribe = function (topic, func) {
         var token = (++this.lastUid).toString();
 
         this.topics[topic].push( { token : token, func : func } );

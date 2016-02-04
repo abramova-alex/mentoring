@@ -5,25 +5,25 @@ window.sashaFramework.Module = (function (exports) {
         this.controller = controller;
     }
 
-    Module.prototype.viewCreate = function(url) {
+    Module.prototype.viewCreate = function (url) {
         this.view = new exports.view(url);
 
         return this;
     };
 
-    Module.prototype.modelCreate = function(data) {
+    Module.prototype.modelCreate = function (data) {
         this.model = new exports.model(data);
 
         return this;
     };
 
-    Module.prototype.controllerCreate = function(fn) {
+    Module.prototype.controllerCreate = function (fn) {
         this.controller = new exports.cntr(fn, this.view, this.model);
 
         return this;
     };
 
-    Module.prototype.onPageLoad = function(){
+    Module.prototype.onPageLoad = function () {
         this.controller.fn();
         this.controller.renderView();
     };

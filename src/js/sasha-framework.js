@@ -23,7 +23,7 @@ window.sashaFramework = (function (w, exports) {
 
     w['sfMvc'] = new sfMvc();
 
-    sfMvc.prototype.init  = function() {
+    sfMvc.prototype.init  = function () {
         w.onhashchange = exports.Router.startRoute;
         exports.Router.startRoute();
     };

@@ -17,7 +17,7 @@ window.sashaFramework.View = (function (exports) {
         }
     };
 
-    View.prototype.loadTemplate = function() {
+    View.prototype.loadTemplate = function () {
         var request = new exports.http({
             method: 'GET',
             url: this.url
@@ -28,13 +28,13 @@ window.sashaFramework.View = (function (exports) {
         request.get()
             .then(onSucces, onError);
 
-        function onSucces(data){
+        function onSucces(data) {
             self.template = data;
             self.loadView();
         }
     };
 
-    function onError(error){
+    function onError(error) {
         console.error("Failed!", error);
     }
 

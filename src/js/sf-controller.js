@@ -7,7 +7,7 @@ window.sashaFramework.Controller = (function (exports) {
         this.model = model;
     }
 
-    Cntr.prototype.renderView = function() {
+    Cntr.prototype.renderView = function () {
         this.view.render(this.model.getData());
     };
 
