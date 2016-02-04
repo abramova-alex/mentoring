@@ -1,52 +1,46 @@
 window.sashaFramework.View = (function (exports) {
-    function View(template) {
-        this.template = template;
+    function View(url) {
+        this.url = url;
         this.rendered = false;
         this.placeHolder = document.querySelector('[sf-view]');
+        this.data = '';
+        this.template = '';
     }
 
-    View.prototype.render = function (newData){
-        this.loadTemplate(newData);
+    View.prototype.render = function (newData) {
+        this.data = newData;
+
+        if (!this.template) {
+            this.loadTemplate();
+        } else {
+            this.loadView();
+        }
     };
 
-    View.prototype.loadTemplate = function(newData) {
+    View.prototype.loadTemplate = function() {
         var request = new exports.http({
             method: 'GET',
-            url: this.template
+            url: this.url
         });
 
         var self = this;
 
-        request.get().then(onSucces, function(error) {
-            console.error("Failed!", error);
-        });
+        request.get()
+            .then(onSucces, onError);
 
         function onSucces(data){
-            self.loadView(data, newData);
-        }
-
-        function onError(){
-            console.log("error");
+            self.template = data;
+            self.loadView();
         }
     };
 
-    View.prototype.loadView = function (viewHtml, newData) {
-        var data = newData,
-            renderViewDelegate = this.renderView.bind(null, viewHtml, data),
-            view = new viewContainer(renderViewDelegate);
+    function onError(error){
+        console.error("Failed!", error);
+    }
 
-        viewHtml = this.viewModelBinding(viewHtml, data);
-        this.placeHolder.innerHTML = viewHtml;
-
-        if (!view.isAsync && !this.rendered) {
-            this.renderView(this.placeHolder, viewHtml, data);
-        }
-    };
-
-    View.prototype.renderView = function(viewHtml, newData) {
-        viewHtml = this.viewModelBinding(viewHtml, newData);
-        this.placeHolder.innerHTML = viewHtml;
-        this.rendered = true;
+    View.prototype.loadView = function () {
+        this.placeHolder.innerHTML = this.viewModelBinding(this.template, this.data);
+        // add async later
     };
 
     View.prototype.viewModelBinding = function (viewHtml, newData) {
@@ -57,11 +51,6 @@ window.sashaFramework.View = (function (exports) {
         });
 
         return viewHtml;
-    };
-
-    var viewContainer = function (renderDelegate) {
-        this.render = renderDelegate;
-        this.isAsync = false;
     };
 
     exports.view = View;

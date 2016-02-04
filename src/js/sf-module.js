@@ -5,8 +5,8 @@ window.sashaFramework.Module = (function (exports) {
         this.controller = controller;
     }
 
-    Module.prototype.viewCreate = function(template) {
-        this.view = new exports.view(template);
+    Module.prototype.viewCreate = function(url) {
+        this.view = new exports.view(url);
 
         return this;
     };
