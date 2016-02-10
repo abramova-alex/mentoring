@@ -21,6 +21,12 @@ window.sashaFramework.PubSub = (function (exports) {
     };
 
     PubSub.prototype.subscribe = function (topic, func) {
+        if ( !this.topics.hasOwnProperty( topic ) ){
+
+            this.topics[topic] = [];
+
+        }
+
         var token = (++this.lastUid).toString();
 
         this.topics[topic].push( { token : token, func : func } );
@@ -28,5 +34,5 @@ window.sashaFramework.PubSub = (function (exports) {
         return token;
     };
 
-    exports.pubSub = PubSub;
+    exports.pubSub = new PubSub();
 })( window.sashaFramework || {});

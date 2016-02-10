@@ -2,7 +2,7 @@
     var homeModule = sf.createModule();
 
     homeModule
-        .modelCreate({Message: 'Hello World'})
+        .modelCreate("home", {Message: 'Hello World'})
         .viewCreate('Views/home.html')
         .controllerCreate(function (view, model) {
             console.log("home page");
@@ -11,7 +11,7 @@
     var contModule = sf.createModule();
 
     contModule
-        .modelCreate({FirstName: "Sasha", LastName: "Abramova", Address: 'Kiev'})
+        .modelCreate("contact", {FirstName: "Sasha", LastName: "Abramova", Address: 'Kiev'})
         .viewCreate('Views/contact.html')
         .controllerCreate(function (view, model) {
             console.log("Contact page");
@@ -21,7 +21,7 @@
 
     loginModule
         .constantCreate("test", "testValue")
-        .modelCreate({UserName: "Sasha", Password: "qwerty"})
+        .modelCreate("login", {UserName: "Sasha", Password: "qwerty"})
         .viewCreate('Views/login.html')
         .controllerCreate(function (view, model) {
             console.log("" + loginModule.constant.const["test"]);
@@ -31,5 +31,9 @@
     sf.AddRoute(contModule, 'contact');
     sf.AddRoute(loginModule, 'login');
     sf.init();
+
+    loginModule.controller.onModelChange();
+
+    loginModule.model.update({UserName: "gggggg", Password: "0"});
 
 })();

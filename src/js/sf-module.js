@@ -11,8 +11,8 @@ window.sashaFramework.Module = (function (exports) {
         return this;
     };
 
-    Module.prototype.modelCreate = function (data) {
-        this.model = new exports.model(data);
+    Module.prototype.modelCreate = function (name, data) {
+        this.model = new exports.model(name, data);
 
         return this;
     };

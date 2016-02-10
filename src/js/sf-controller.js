@@ -11,6 +11,12 @@ window.sashaFramework.Controller = (function (exports) {
         this.view.render(this.model.getData());
     };
 
+    Cntr.prototype.onModelChange = function () {
+        var self = this;
+
+        exports.pubSub.subscribe(self.model.name, self.renderView);
+    };
+
     exports.cntr = Cntr;
 
 })(window.sashaFramework || {});
