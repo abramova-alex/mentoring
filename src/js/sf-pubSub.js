@@ -34,5 +34,14 @@ window.sashaFramework.PubSub = (function (exports) {
         return token;
     };
 
-    exports.pubSub = new PubSub();
+    var instance;
+
+    function getInstance() {
+        if( ! instance ) {
+            instance = new PubSub();
+        }
+        return instance;
+    }
+
+    exports.pubSub = getInstance;
 })( window.sashaFramework || {});
