@@ -11,22 +11,22 @@ window.sashaFramework = window.sashaFramework || {};
 
 
 window.sashaFramework = (function (w, exports) {
-    var sfMvc = function () {};
+    var Sf = function () {};
 
-    sfMvc.prototype.AddRoute = function (controller, route) {
+    Sf.prototype.AddRoute = function (controller, route) {
         exports.Router.add(controller, route);
     };
 
 
-    sfMvc.prototype.createModule = function (model, view, controller) {
+    Sf.prototype.createModule = function (model, view, controller) {
         return new exports.module(model, view, controller);
     };
 
-    w['sfMvc'] = new sfMvc();
-
-    sfMvc.prototype.init  = function () {
+    Sf.prototype.init  = function () {
         w.onhashchange = exports.Router.startRoute;
         exports.Router.startRoute();
     };
+
+    w['sf'] = new Sf();
 
 })(window, window.sashaFramework);

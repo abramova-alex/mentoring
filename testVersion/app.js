@@ -1,5 +1,5 @@
 (function () {
-    var homeModule = sfMvc.createModule();
+    var homeModule = sf.createModule();
 
     homeModule
         .modelCreate({Message: 'Hello World'})
@@ -8,7 +8,7 @@
             console.log("home page");
         });
 
-    var contModule = sfMvc.createModule();
+    var contModule = sf.createModule();
 
     contModule
         .modelCreate({FirstName: "Sasha", LastName: "Abramova", Address: 'Kiev'})
@@ -17,7 +17,7 @@
             console.log("Contact page");
         });
 
-    var loginModule = sfMvc.createModule();
+    var loginModule = sf.createModule();
 
     loginModule
         .constantCreate("test", "testValue")
@@ -27,9 +27,9 @@
             console.log("" + loginModule.constant.const["test"]);
         });
 
-    sfMvc.AddRoute(homeModule, 'home');
-    sfMvc.AddRoute(contModule, 'contact');
-    sfMvc.AddRoute(loginModule, 'login');
-    sfMvc.init();
+    sf.AddRoute(homeModule, 'home');
+    sf.AddRoute(contModule, 'contact');
+    sf.AddRoute(loginModule, 'login');
+    sf.init();
 
 })();
