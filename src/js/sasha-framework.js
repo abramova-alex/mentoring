@@ -7,6 +7,7 @@ window.sashaFramework = window.sashaFramework || {};
 //= sf-view.js
 //= sf-router.js
 //= sf-controller.js
+//= sf-constant.js
 
 
 window.sashaFramework = (function (w, exports) {

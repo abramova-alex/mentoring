@@ -20,10 +20,11 @@
     var loginModule = sfMvc.createModule();
 
     loginModule
+        .constantCreate("test", "testValue")
         .modelCreate({UserName: "Sasha", Password: "qwerty"})
         .viewCreate('Views/login.html')
         .controllerCreate(function (view, model) {
-            console.log("login page");
+            console.log("" + loginModule.constant.const["test"]);
         });
 
     sfMvc.AddRoute(homeModule, 'home');

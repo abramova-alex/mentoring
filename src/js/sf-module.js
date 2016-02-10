@@ -23,6 +23,12 @@ window.sashaFramework.Module = (function (exports) {
         return this;
     };
 
+    Module.prototype.constantCreate = function (name, value) {
+        this.constant = new exports.constant(name, value);
+
+        return this;
+    };
+
     Module.prototype.onPageLoad = function () {
         this.controller.fn();
         this.controller.renderView();
