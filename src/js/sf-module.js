@@ -5,8 +5,10 @@ window.sashaFramework.Module = (function (exports) {
         this.controller = controller;
     }
 
-    Module.prototype.viewCreate = function (url) {
-        this.view = new exports.view(url);
+    Module.prototype.viewCreate = function (name, url) {
+        this.view = new exports.view(name, url);
+
+        this.view.getTemplate();
 
         return this;
     };

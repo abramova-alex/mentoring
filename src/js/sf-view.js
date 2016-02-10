@@ -1,20 +1,20 @@
 window.sashaFramework.View = (function (exports) {
-    function View(url) {
+    function View(name, url) {
         this.url = url;
-        this.rendered = false;
-        this.placeHolder = document.querySelector('[sf-view]');
-        this.data = '';
+        this.placeHolder = document.querySelector(name);
         this.template = '';
     }
 
     View.prototype.render = function (newData) {
-        this.data = newData;
+        this.loadView(newData);
+    };
 
+    View.prototype.getTemplate = function () {
         if (!this.template) {
             this.loadTemplate();
-        } else {
-            this.loadView();
         }
+
+        return this.template;
     };
 
     View.prototype.loadTemplate = function () {
@@ -30,7 +30,6 @@ window.sashaFramework.View = (function (exports) {
 
         function onSucces(data) {
             self.template = data;
-            self.loadView();
         }
     };
 
@@ -38,8 +37,8 @@ window.sashaFramework.View = (function (exports) {
         console.error("Failed!", error);
     }
 
-    View.prototype.loadView = function () {
-        this.placeHolder.innerHTML = this.viewModelBinding(this.template, this.data);
+    View.prototype.loadView = function (data) {
+        this.placeHolder.innerHTML = data;
         // add async later
     };
 

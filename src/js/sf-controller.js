@@ -8,13 +8,24 @@ window.sashaFramework.Controller = (function (exports) {
     }
 
     Cntr.prototype.renderView = function () {
-        this.view.render(this.model.getData());
+        var bindView = this.viewModelBinding(this.view.getTemplate(), this.model.getData());
+        this.view.render(bindView);
     };
 
     Cntr.prototype.onModelChange = function () {
         var self = this;
 
         exports.pubSub().subscribe(self.model.name, self.renderView);
+    };
+
+    Cntr.prototype.viewModelBinding = function (viewHtml, newData) {
+        var modelProps = Object.getOwnPropertyNames(newData);
+
+        modelProps.forEach(function (element) {
+            viewHtml = viewHtml.replace('{{' + element + '}}', newData[element]);
+        });
+
+        return viewHtml;
     };
 
     exports.cntr = Cntr;

@@ -3,7 +3,7 @@
 
     homeModule
         .modelCreate("home", {Message: 'Hello World'})
-        .viewCreate('Views/home.html')
+        .viewCreate('[sf-view]', 'Views/home.html')
         .controllerCreate(function (view, model) {
             console.log("home page");
         });
@@ -12,7 +12,7 @@
 
     contModule
         .modelCreate("contact", {FirstName: "Sasha", LastName: "Abramova", Address: 'Kiev'})
-        .viewCreate('Views/contact.html')
+        .viewCreate('[sf-view]', 'Views/contact.html')
         .controllerCreate(function (view, model) {
             console.log("Contact page");
         });
@@ -22,7 +22,7 @@
     loginModule
         .constantCreate("test", "testValue")
         .modelCreate("login", {UserName: "Sasha", Password: "qwerty"})
-        .viewCreate('Views/login.html')
+        .viewCreate('[sf-view]', 'Views/login.html')
         .controllerCreate(function (view, model) {
             console.log("" + loginModule.constant.const["test"]);
         });
