@@ -1,6 +1,6 @@
-window.sashaFramework = window.sashaFramework || {};
+(function () {
+    var exports = this;
 
-window.sashaFramework.Controller = (function (exports) {
     function Cntr(fn, view, model) {
         this.fn = fn;
         this.view = view;
@@ -30,4 +30,4 @@ window.sashaFramework.Controller = (function (exports) {
 
     exports.cntr = Cntr;
 
-})(window.sashaFramework || {});
+}).call(window.sashaFramework || {});

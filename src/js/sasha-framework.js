@@ -9,8 +9,8 @@ window.sashaFramework = window.sashaFramework || {};
 //= sf-controller.js
 //= sf-constant.js
 
-
-window.sashaFramework = (function (w, exports) {
+(function (w) {
+    var exports = this;
     var Sf = function () {};
 
     Sf.prototype.AddRoute = function (controller, route) {
@@ -29,4 +29,4 @@ window.sashaFramework = (function (w, exports) {
 
     w['sf'] = new Sf();
 
-})(window, window.sashaFramework);
+}).call(window.sashaFramework || {}, window);

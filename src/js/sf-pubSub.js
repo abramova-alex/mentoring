@@ -1,4 +1,6 @@
-window.sashaFramework.PubSub = (function (exports) {
+(function () {
+    var exports = this;
+
     function PubSub() {
         this.topics = {};
         this.lastUid = -1;
@@ -44,4 +46,4 @@ window.sashaFramework.PubSub = (function (exports) {
     }
 
     exports.pubSub = getInstance;
-})( window.sashaFramework || {});
+}).call( window.sashaFramework || {});

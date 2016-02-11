@@ -1,4 +1,5 @@
-window.sashaFramework.Constant = (function (exports) {
+(function () {
+    var exports = this;
     function Constant(name, value) {
         this.const = {};
 
@@ -6,4 +7,4 @@ window.sashaFramework.Constant = (function (exports) {
     }
 
     exports.constant = Constant;
-})( window.sashaFramework || {});
+}).call(window.sashaFramework || {});

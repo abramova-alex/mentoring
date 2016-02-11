@@ -1,4 +1,6 @@
-window.sashaFramework.Http = (function (exports) {
+(function () {
+    var exports = this;
+
     function Http(conf) {
         this.request = new XMLHttpRequest();
         this.method = conf.method;
@@ -29,4 +31,4 @@ window.sashaFramework.Http = (function (exports) {
 
 
     exports.http = Http;
-})( window.sashaFramework || {});
+}).call(window.sashaFramework || {});

@@ -1,4 +1,6 @@
-window.sashaFramework.Model = (function (exports) {
+(function () {
+    var exports = this;
+
     function Model(name, data) {
         this.name = name;
         this.data = data;
@@ -15,4 +17,4 @@ window.sashaFramework.Model = (function (exports) {
     };
 
     exports.model = Model;
-})( window.sashaFramework || {});
+}).call(window.sashaFramework || {});

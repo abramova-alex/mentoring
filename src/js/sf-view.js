@@ -1,4 +1,6 @@
-window.sashaFramework.View = (function (exports) {
+(function () {
+    var exports = this;
+
     function View(name, url) {
         this.url = url;
         this.placeHolder = document.querySelector(name);
@@ -53,4 +55,4 @@ window.sashaFramework.View = (function (exports) {
     };
 
     exports.view = View;
-})( window.sashaFramework || {});
+}).call( window.sashaFramework || {});

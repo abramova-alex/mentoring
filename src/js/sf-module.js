@@ -1,4 +1,6 @@
-window.sashaFramework.Module = (function (exports) {
+(function () {
+    var exports = this;
+
     function Module(model, view, controller) {
         this.model = model;
         this.view = view;
@@ -37,4 +39,4 @@ window.sashaFramework.Module = (function (exports) {
     };
 
     exports.module = Module;
-})( window.sashaFramework || {});
+}).call( window.sashaFramework || {});
