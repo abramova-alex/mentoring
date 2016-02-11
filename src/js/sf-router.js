@@ -1,40 +1,41 @@
-window.sashaFramework = window.sashaFramework || {};
+(function () {
+    var exports = this;
 
-window.sashaFramework.Router = (function (w, d, exports) {
-    var routes = {};
-
-    function getFragment() {
-        return clearSlashes(location.hash.replace('#', ''));
+    function Router() {
+        this.routes = {};
     }
 
-    function clearSlashes(path) {
+    Router.prototype.getFragment = function () {
+        return this.clearSlashes(location.hash.replace('#', ''));
+    };
+
+    Router.prototype.clearSlashes = function (path) {
         return path.toString().replace(/\/$/, '').replace(/^\//, '');
-    }
+    };
 
-    function add(module, route) {
+    Router.prototype.add = function (module, route) {
         if (typeof route === 'function') {
             module = route;
             route = '';
         }
 
-        routes[route] = { route: route, module: module};
-    }
-
-    function getRouteObj() {
-        var routeName = getFragment();
-
-        return routes[routeName];
-    }
-
-    function startRoute() {
-        var routeObj = getRouteObj();
-
-        routeObj.module.onPageLoad();
-    }
-
-    return {
-        add: add,
-        startRoute: startRoute
+        this.routes[route] = { route: route, module: module};
     };
 
-})(window, document, window.sashaFramework);
+    Router.prototype.getRouteObj = function () {
+        var routeName = this.getFragment();
+
+        return this.routes[routeName];
+    };
+
+    Router.prototype.startRoute = function () {
+        var self = this;
+        console.log("", self);
+        var routeObj = self.getRouteObj();
+
+        routeObj.module.onPageLoad();
+    };
+
+    exports.router = Router;
+
+}).call(window.sashaFramework || {});

@@ -12,9 +12,10 @@ window.sashaFramework = window.sashaFramework || {};
 (function (w) {
     var exports = this;
     var Sf = function () {};
+    var router = new exports.router();
 
     Sf.prototype.AddRoute = function (controller, route) {
-        exports.Router.add(controller, route);
+        router.add(controller, route);
     };
 
 
@@ -23,8 +24,8 @@ window.sashaFramework = window.sashaFramework || {};
     };
 
     Sf.prototype.init  = function () {
-        w.onhashchange = exports.Router.startRoute;
-        exports.Router.startRoute();
+        w.onhashchange = router.startRoute.bind(router);
+        router.startRoute();
     };
 
     w['sf'] = new Sf();
