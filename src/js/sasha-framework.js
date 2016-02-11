@@ -12,7 +12,7 @@ window.sashaFramework = window.sashaFramework || {};
 (function (w) {
     var exports = this;
     var Sf = function () {};
-    var router = new exports.router();
+    var router = exports.router();
 
     Sf.prototype.AddRoute = function (controller, route) {
         router.add(controller, route);

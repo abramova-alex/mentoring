@@ -36,6 +36,16 @@
         routeObj.module.onPageLoad();
     };
 
-    exports.router = Router;
+    var instance;
+
+    function getInstance() {
+        if( ! instance ) {
+            instance = new Router();
+        }
+
+        return instance;
+    }
+
+    exports.router = getInstance;
 
 }).call(window.sashaFramework || {});
