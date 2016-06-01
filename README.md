@@ -38,31 +38,17 @@ How install app
   * mkdir /root/bin
   * cd tmp && git clone https://github.com/abramova-alex/mentoring.git && mv ./mentoring/watering.js /root/bin
   * cat <<EOF > /etc/systemd/system/watering.service
-  * [Unit]
-  * Description=Watering
-  * [Service]
-  * ExecStart=node /root/bin/watering.js
-  * KillMode=process
-  * Restart=on-failure
-  * RestartSec=10s
-  * LimitNOFILE=4096
-  * [Install]
-  * WantedBy=multi-user.target
-  * EOF
+    [Unit]
+    Description=Watering
+    [Service]
+    ExecStart=node /root/bin/watering.js
+    KillMode=process
+    Restart=on-failure
+    RestartSec=10s
+    LimitNOFILE=4096
+    [Install]
+    WantedBy=multi-user.target
+    EOF
   * systemctl enable watering
   * systemctl start watering
-
-
-
-
-
-
-
-
-
-  
-First start
------------
-For first start open console and type:  
-```npm install```
 
