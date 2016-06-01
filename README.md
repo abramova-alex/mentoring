@@ -38,8 +38,8 @@ How install app
   * mkdir /root/bin
   * cd tmp && git clone https://github.com/abramova-alex/mentoring.git && mv ./mentoring/watering.js /root/bin
   * cat <<EOF > /etc/systemd/system/watering.service
-    [Unit]
-    Description=Watering
+ [Unit]
+ Description=Watering
     [Service]
     ExecStart=node /root/bin/watering.js
     KillMode=process
