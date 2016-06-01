@@ -38,7 +38,8 @@ How install app
   * mkdir /root/bin
   * cd tmp && git clone https://github.com/abramova-alex/mentoring.git && mv ./mentoring/watering.js /root/bin
   * cat <<EOF > /etc/systemd/system/watering.service
- [Unit]
+```shell
+[Unit]
  Description=Watering
     [Service]
     ExecStart=node /root/bin/watering.js
@@ -49,6 +50,8 @@ How install app
     [Install]
     WantedBy=multi-user.target
     EOF
+```
+ 
   * systemctl enable watering
   * systemctl start watering
 
