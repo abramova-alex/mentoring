@@ -28,30 +28,34 @@ Tool box
 
 How install app
 -----------
-  * apt-get install nodejs npm
-  * git clone git://github.com/quick2wire/quick2wire-gpio-admin.git
-  * cd quick2wire-gpio-admin
-  * make
-  * sudo make install
-  * sudo adduser $USER gpio
-  * npm install pi-gpio
-  * mkdir /root/bin
-  * cd tmp && git clone https://github.com/abramova-alex/mentoring.git && mv ./mentoring/watering.js /root/bin
-  * cat <<EOF > /etc/systemd/system/watering.service
 ```shell
+apt-get install nodejs npm
+git clone git://github.com/quick2wire/quick2wire-gpio-admin.git
+cd quick2wire-gpio-admin
+make
+sudo make install
+sudo adduser $USER gpio
+npm install pi-gpio
+mkdir /root/bin
+cd tmp && git clone https://github.com/abramova-alex/mentoring.git && mv ./mentoring/watering.js /root/bin
+cat <<EOF > /etc/systemd/system/watering.service
 [Unit]
  Description=Watering
-    [Service]
-    ExecStart=node /root/bin/watering.js
-    KillMode=process
-    Restart=on-failure
-    RestartSec=10s
-    LimitNOFILE=4096
-    [Install]
-    WantedBy=multi-user.target
-    EOF
+ 
+[Service]
+ ExecStart=node /root/bin/watering.js
+ KillMode=process
+ Restart=on-failure
+ RestartSec=10s
+ LimitNOFILE=4096
+ 
+[Install]
+ WantedBy=multi-user.target
+ EOF
+ 
+systemctl enable watering
+systemctl start watering
 ```
  
-  * systemctl enable watering
-  * systemctl start watering
+  
 
